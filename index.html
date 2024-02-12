@@ -23,7 +23,7 @@
     </div>
   </div>
   </div>
-  <button onclick="initializeField()" class="button button-50">
+  <button id="newSheetBtn" class="button button-50">
     Maak een nieuw tekenblad
   </button>
 
@@ -36,10 +36,10 @@
 
   <div id="coloringArea"></div>
 
-  <button onclick="exportToJson()" class="button button-50">
+  <button id="exportBtn" class="button button-50">
     Exporteer naar JSON
   </button>
-  <input type="file" id="jsonFile" accept=".json" onchange="handleFileImport(event)" style="display: none;" />
+  <input type="file" id="jsonFile" accept=".json"  style="display: none;" />
 
 
 <label for="jsonFile" class="button-50">Bestand kiezen</label>
