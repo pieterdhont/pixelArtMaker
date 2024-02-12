@@ -1,0 +1,173 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: darkgray;
+  
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.controls, .color-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px; 
+  margin-bottom: 20px; 
+}
+
+
+.controls {
+  display: grid;
+  grid-template-columns: auto auto; /* Twee kolommen: één voor labels, één voor inputs */
+  gap: 10px; /* Ruimte tussen kolommen en rijen */
+  margin-top: 20px;
+  width: 100%;
+  max-width: 400px; /* Stel een maximale breedte in voor de container als je wilt */
+}
+
+.input-group {
+  display: contents; /* Dit zorgt ervoor dat de elementen binnenin als rechtstreekse kinderen van de grid container gedragen */
+}
+
+.input-group label {
+  grid-column: 1/2;
+}
+
+.input-group input {
+  grid-column: 2/3;
+}
+
+/* Optioneel: Als je wilt dat de inputvelden allemaal dezelfde breedte hebben */
+.input-group input {
+  width: 100%; /* Zorgt ervoor dat alle inputvelden de volledige breedte van hun kolom innemen */
+}
+
+
+.button {
+  padding: 5px 15px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.color-button {
+  
+  width: 60px;
+  height: 50px;
+  border: 1px solid #000;
+  margin-right: 5px;
+  margin-top: 16px;
+  flex: 0 0 auto;
+  transition: all 0.2s ease; 
+    position: relative; 
+}
+
+.color-button.selected {
+  border: 2px solid #444; /* Maakt de rand donkerder en dikker voor contrast */
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.5); /* Voegt een dieper ingedrukt effect toe */
+}
+
+.color-button::after {
+  content: '';
+  position: absolute;
+  top: 2px; /* Simuleert het ingedrukt effect door het pseudo-element iets naar beneden te verplaatsen */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.2); /* Voegt een lichte glans toe */
+  transition: opacity 0.2s ease;
+  opacity: 0; /* Het pseudo-element is standaard niet zichtbaar */
+  z-index: -1;
+}
+
+.color-button.selected::after {
+  opacity: 1; /* Maakt het pseudo-element zichtbaar wanneer de knop is geselecteerd */
+  top: 1px; /* Verplaatst het pseudo-element verder naar beneden voor het ingedrukt effect */
+}
+
+
+#red { background-color: red; }
+#green { background-color: green; }
+#blue { background-color: blue; }
+#white {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+#coloringArea {
+  font-size: 0; /* Voor het verwijderen van de ruimte tussen inline-block elementen */
+  margin-top: 20px;
+  margin-bottom: 40px;
+  background-color: white;
+  box-shadow: -10px 10px 0px rgba(33, 33, 33, 1), -20px 20px 0px rgba(33, 33, 33, 0.7), -30px 30px 0px rgba(33, 33, 33, 0.4), -40px 40px 0px rgba(33, 33, 33, 0.1);
+}
+
+.color-field {
+  border: 1px solid #000;
+  display: inline-block;
+  font-size: initial;
+  width: 30px; /* Deze waarde moet overeenkomen met de celbreedte in coloring.js */
+  height: 30px; /* Deze waarde moet overeenkomen met de celhoogte in coloring.js */
+  box-sizing: border-box;
+  vertical-align: top;
+}
+
+input[type="file"] {
+  margin-top: 10px;
+}
+
+
+
+
+
+.button-50 {
+  appearance: button;
+  background-color: #000;
+  background-image: none;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-shadow: #fff 4px 4px 0 0,#000 4px 4px 0 1px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: ITCAvantGardeStd-Bk,Arial,sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 5px 10px 0;
+  overflow: visible;
+  padding: 12px 40px;
+  text-align: center;
+  text-transform: none;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.button-50:focus {
+  text-decoration: none;
+}
+
+.button-50:hover {
+  text-decoration: none;
+}
+
+.button-50:active {
+  box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+  outline: 0;
+}
+
+.button-50:not([disabled]):active {
+  box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+  transform: translate(2px, 2px);
+}
+
