@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Kleurplaat</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="controls">
-      <div class="input-group">
-        <label for="width">Aantal cellen horizontaal:</label>
-        <input type="number" id="width" value="10" />
-        </div>
-        <div class="input-group">
-          <label for="height">Aantal cellen verticaal:</label>
-          <input type="number" id="height" value="10" />
-        </div>
-        <div class="input-group">
-          <label for="cellSize">Celgrootte:</label>
-          <input type="number" id="cellSize" value="30" />
-        </div>
-      </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Kleurplaat</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="controls">
+    <div class="input-group">
+      <label for="width">Aantal cellen horizontaal:</label>
+      <input type="number" id="width" value="10" />
     </div>
-    <button onclick="initializeField()" class="button button-50">
-      Maak een nieuw tekenblad
-    </button>
-
-    <div class="color-buttons">
-      <button class="color-button" id="red"></button>
-      <button class="color-button" id="green"></button>
-      <button class="color-button" id="blue"></button>
-      <button class="color-button" id="white"></button>
+    <div class="input-group">
+      <label for="height">Aantal cellen verticaal:</label>
+      <input type="number" id="height" value="10" />
     </div>
+    <div class="input-group">
+      <label for="cellSize">Celgrootte:</label>
+      <input type="number" id="cellSize" value="30" />
+    </div>
+  </div>
+  </div>
+  <button onclick="initializeField()" class="button button-50">
+    Maak een nieuw tekenblad
+  </button>
 
-    <div id="coloringArea"></div>
+  <div class="color-buttons">
+    <button class="color-button" id="red"></button>
+    <button class="color-button" id="green"></button>
+    <button class="color-button" id="blue"></button>
+    <button class="color-button" id="white"></button>
+  </div>
 
-    <button onclick="exportToJson()" class="button button-50">
-      Exporteer naar JSON
-    </button>
-    <input
-      type="file"
-      id="jsonFile"
-      accept=".json"
-      onchange="handleFileImport(event)"
-    />
+  <div id="coloringArea"></div>
 
-    <script src="coloring.js"></script>
-  </body>
+  <button onclick="exportToJson()" class="button button-50">
+    Exporteer naar JSON
+  </button>
+  <input type="file" id="jsonFile" accept=".json" onchange="handleFileImport(event)" style="display: none;" />
+
+
+<label for="jsonFile" class="button-50">Bestand kiezen</label>
+
+  <span id="fileNameDisplay">Geen bestand gekozen</span>
+
+  <script src="coloring.js"></script>
+</body>
+
 </html>

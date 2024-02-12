@@ -69,15 +69,25 @@ class ColoringField {
   }
 
   exportToJson() {
-      const exportObj = this.fields.map(field => ({ x: field.dataset.x, y: field.dataset.y, color: field.dataset.color }));
-      const blob = new Blob([JSON.stringify(exportObj)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'coloring.json';
-      a.click();
+    const exportObj = this.fields.map(field => ({
+      x: field.dataset.x,
+      y: field.dataset.y,
+      color: field.dataset.color
+    }));
+    
+    // Log the JSON string to the console
+    const jsonString = JSON.stringify(exportObj);
+    console.log(jsonString);
+  
+    // Create a blob and trigger the download
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'coloring.json';
+    a.click();
   }
-
+  
   async importFromJson(json) {
     // Parse de JSON data
     const importObj = JSON.parse(json);
@@ -87,9 +97,9 @@ class ColoringField {
     const height = Math.max(...importObj.map(item => parseInt(item.y, 10))) + 1;
 
     // Reset de huidige staat voordat de nieuwe data wordt ingeladen
-    this.resetState(); // Zorg ervoor dat deze methode de volledige interne staat reset
+    this.resetState(); 
     document.querySelectorAll('.color-button').forEach(btn => btn.classList.remove('selected'));
-    resetFileInput(); // Optioneel, reset het bestandsinputelement indien nodig
+    resetFileInput(); 
 
     // Wacht tot de nieuwe velden zijn geïnitialiseerd
     await this.initFields(width, height, this.cellWidth, this.cellHeight);
@@ -109,7 +119,7 @@ class ColoringField {
     this.fields = [];
     this.currentColor = null;
     document.querySelectorAll('.color-button').forEach(btn => btn.classList.remove('selected'));
-    // Voeg hier eventuele andere relevante staat reset logica toe
+    
 }
 
 }
@@ -129,10 +139,11 @@ async function initializeField() {
       coloringField = new ColoringField();
   } else {
       // Reset de staat hier
-      coloringField.resetState(); // Zorg ervoor dat deze methode de volledige interne staat reset
+      coloringField.resetState(); 
   }
   await coloringField.initFields(width, height, cellSize);
   resetFileInput();
+  document.getElementById('fileNameDisplay').textContent = "Geen bestand gekozen";
 }
 
 
@@ -142,15 +153,23 @@ function exportToJson() {
 }
 
 function handleFileImport(event) {
-  const file = event.target.files[0];
+  const fileInput = document.getElementById('jsonFile');
+  const fileNameDisplay = document.getElementById('fileNameDisplay'); // Get the span element
+  
+  const file = fileInput.files[0];
   if (file) {
-      const reader = new FileReader();
-      reader.onload = async function(e) {
-          await coloringField.importFromJson(e.target.result);
-      };
-      reader.readAsText(file);
+    fileNameDisplay.textContent = file.name; // Set the file name in the span
+
+    const reader = new FileReader();
+    reader.onload = async function(e) {
+      await coloringField.importFromJson(e.target.result);
+    };
+    reader.readAsText(file);
+  } else {
+    fileNameDisplay.textContent = "Geen bestand gekozen"; // Reset the text if no file is selected
   }
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
   initializeField();

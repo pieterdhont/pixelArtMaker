@@ -101,7 +101,9 @@ body {
 }
 
 #coloringArea {
-  font-size: 0; /* Voor het verwijderen van de ruimte tussen inline-block elementen */
+ 
+  overflow-x: auto;
+  white-space: nowrap;
   margin-top: 20px;
   margin-bottom: 40px;
   background-color: white;
@@ -112,11 +114,13 @@ body {
   border: 1px solid #000;
   display: inline-block;
   font-size: initial;
-  width: 30px; /* Deze waarde moet overeenkomen met de celbreedte in coloring.js */
-  height: 30px; /* Deze waarde moet overeenkomen met de celhoogte in coloring.js */
+  width: 30px; /* Set a fixed width for the cells */
+  height: 30px; /* Set a fixed height for the cells */
   box-sizing: border-box;
   vertical-align: top;
 }
+
+
 
 input[type="file"] {
   margin-top: 10px;
