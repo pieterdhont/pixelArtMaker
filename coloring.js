@@ -134,6 +134,12 @@ async function initializeField() {
   const height = parseInt(document.getElementById('height').value, 10);
   const cellSize = parseInt(document.getElementById('cellSize').value, 10);
 
+  if (width <= 0 || height <= 0 || cellSize <= 0) {
+   alert("Please enter values greater than 0.");
+    
+    return;
+  }
+
   // Controleer of coloringField al bestaat en reset de staat indien nodig
   if (!coloringField) {
       coloringField = new ColoringField();
